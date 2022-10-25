@@ -39,14 +39,14 @@ A Scalene triangle is a triangle with three sides of unequal lengths.
 Write specs for each of the described `Scalene` class methods below. Then
 write the code needed to pass those specs.
 
-- The `Scalene` class should inherit from the `Triangle` class. Each instance of `Scalene` should be initialized with 3 side lengths, as well as an `isValidTriangle` property, with a value derived from the `Scalene` class `validate` method.
+- The `Scalene` class should inherit from the `Triangle` class. Each instance of `Scalene` should be initialized with 3 side lengths, as well as an `isValidTriangle` property, with a value derived from the `Triangle` class `hasValidSideLengths` method.
 - `isScalene()` instance method - returns `true` if it is a valid
   scalene triangle, and `false` if it is invalid. In a valid scalene triangle, all sides must be different lengths.
-    - Write tests to make sure that this method overrides the method in the `Triangle`class with the same name.
 -  `validate()` instance method - adds an `isValidScalene` property to the
   scalene triangle instance, with a value of `true` if it is a valid scalene
   triangle and `false` if the side lengths are invalid for a scalene
   triangle.
+    - Write tests to make sure that this method overrides the method in the `Triangle` class with the same name.
 
 
 ## `Isosceles` Class
