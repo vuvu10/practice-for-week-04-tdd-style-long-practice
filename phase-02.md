@@ -24,7 +24,7 @@ Now write the code to pass those tests, then refactor that code. Once you've
 finished, add some different **contexts** for your `reciprocal` function. Your
 `reciprocal` function will now only intake arguments between `1` and `1000000`.
 If the given argument is less than `1` or greater than `1,000,000` then
-a `TypeError` will be thrown with a descriptive string message.
+a `RangeError` will be thrown with a descriptive string message.
 
 In order to properly test the `reciprocal` function you'll need to create two
 `context` blocks within the `reciprocal` `describe` function callback - one for
