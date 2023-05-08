@@ -1,52 +1,76 @@
-# Phase 4: Testing a Class
+# Phase 4: Testing multiple classes
 
-For this next phase, you will be utilizing Chai to test a `Person` class. In the
-__problems__ directory, locate the file named __person.js__, and in the
-__test__ folder, a corresponding __person-spec.js__ file. Work one spec at a
+For this next phase, you will be utilizing Chai to test a `Triangle` class, as
+well as the `Scalene` and `Isosceles` classes, which inherit from the
+`Triangle` class.
+
+These classes can be used to build instances of _potential_ triangles of different types. Each class includes methods that check the properties of the instance to validate whether it is a valid instance of that class.
+
+In the __problems__ directory, locate the file named __triangle.js__, and in the
+__test__ folder, a corresponding __triangle-spec.js__ file. Work one spec at a
 time through the list below using Red, Green, Refactor as you go, and don't
 forget to use [Mocha Hooks][mocha-hooks] to make your specs super DRY!
 
-Write specs for each of the described `Person` class methods below. Then write
+## `Triangle` Class
+
+Write specs for each of the described `Triangle` class methods below. Then write
 the code needed to pass those specs.
 
-- `constructor` - will intake a `name` and `age` and set them as properties on
-  the instance. Make sure you test that these properties exist on an instance,
-  as well as ensuring they are set properly.
-- `sayHello()` instance method - will return a string of the `Person` instance's
-  name and a greeting message
-- `visit(otherPerson)` instance method - will return a string stating that this
-  instance visited the passed-in person instance (i.e. `person1.visit(person2)`
-  returns `"Mai visited Erin"`).
-- `switchVisit(otherPerson)` instance method - will invoke the `visit` function
-  of the parameter (`otherPerson`), passing in the current instance as the
-  argument.
-- `update(obj)` instance method - this method will have two contexts if the
-  incoming argument _is_ or _is not_ a valid object.
-  - A: If the incoming argument is not an object throw a new `TypeError` with a
-    clear message
-  - B: If the incoming argument is an object then the instance's properties
-    should be updated to match the passed-in object's values as shown below.
-  - C: If the incoming object does not have a `name` and an `age` property,
-    throw a `TypeError` with an appropriate message
+- `constructor` - will intake the lengths of 3 sides `side1`, `side2`, and
+  `side3` and set them as properties on the instance. Make sure you test that
+  these properties exist on an instance, as well as ensuring they are set
+  properly.
+- `getPerimeter()` instance method - will return the perimeter of the `Triangle`
+  instance, by summing the three sides.
+- `hasValidSideLengths()` instance method - returns `true` if it is a valid
+  triangle, and `false` if it is invalid. In a valid triangle, the sum of any
+  two sides must be greater than the remaining side.
+- `validate()` instance method - adds an `isValid` property to the triangle
+  instance, with a value of `true` if it is a valid triangle and `false` if the
+  side lengths are invalid.
+- `getValidTriangles()` static method - takes in an arbitrary number of triangle
+  instances, and returns all of the instances that are valid triangles.
 
-  ```js
-  let coolPerson = new Person("mai", 32); // Person { name: 'mai', age: 32 }
 
-  coolPerson.update({ name: "lulu", age: 57 });
-  console.log(coolPerson); // Person { name: 'lulu', age: 57 }
-  ```
+## `Scalene` Class
 
-- `tryUpdate(obj)` instance method - this method will call the `update(obj)`
-  method with the incoming argument, and it will have two contexts if the
-  invocation of `update` was or was not successful:
-  - A: If `update` is successfully invoked (it does not throw an error) then
-    `true` is returned indicating the update was successful (make sure that the
-    instance was updated as well)
-  - B: If `update` is not successfully invoked it should **not** throw
-    an error, instead it should return `false`.
-- `greetAll(obj)` static method - this will intake an array of `Person`
-  instances. The `greetAll` method will then call the `sayHello()` method on
-  each `Person` instance and store each returned string in an array, before
-  finally returning an array of the stored strings.
+A Scalene triangle is a triangle with three sides of unequal lengths.
+
+Write specs for each of the described `Scalene` class methods below. Then
+write the code needed to pass those specs.
+
+- The `Scalene` class should inherit from the `Triangle` class. Each instance of `Scalene` should be initialized with 3 side lengths, as well as an `isValidTriangle` property, with a value derived from the `Triangle` class `hasValidSideLengths` method.
+- `isScalene()` instance method - returns `true` if it is a valid
+  scalene triangle, and `false` if it is invalid. In a valid scalene triangle, all sides must be different lengths.
+-  `validate()` instance method - adds an `isValidScalene` property to the
+  scalene triangle instance, with a value of `true` if it is a valid scalene
+  triangle and `false` if the side lengths are invalid for a scalene
+  triangle.
+    - Write tests to make sure that this method overrides the method in the `Triangle` class with the same name.
+
+
+## `Isosceles` Class
+
+An Isosceles triangle has to sides of equal lengths.
+
+The `Isosceles` class should have similar methods to the `Scalene` class. The
+only difference is that the methods should check the side lengths and validate
+whether they meet the definition of an Isosceles Triangle.
+
+Write specs for each of the methods. Then write the code needed to pass those
+specs.
+
+## BONUS: `Right` and `Equilateral` Class
+
+If your have extra time, write specs for defining a `Right` triangle class as well as an `Equilateral` triangle class.
+- What properties need to be defined in the constructor?
+- What opportunities are there for using inheritance?
+- How might you you validate these two triangle types?
+
+After writing the specs, go ahead and write the code needed to pass those specs.
+
+Once you've finished and you've refactored all your code feel free to run
+`mocha` and look at all those passed specs! Pat yourself on the back for
+starting your journey into TDD development.
 
 [mocha-hooks]: https://mochajs.org/#hooks

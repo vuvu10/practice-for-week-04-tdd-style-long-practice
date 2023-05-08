@@ -38,9 +38,10 @@ Run `npm install` to install any dependencies.
 Follow the directions to complete each phase:
 - Phase 1: Testing the `reverseString` function
 - Phase 2: Testing multiple functions
-- Phase 3: Testing the `myMap` function
-- Phase 4: Testing a class
-- Phase 5: Testing multiple classes
+- Phase 3: Testing a class
+- Phase 4: Testing multiple classes
+- BONUS Phase 5: Testing the `myMap` function
+
 
 [mocha]: https://mochajs.org/#bdd
 [chai]: https://www.chaijs.com/api/bdd/

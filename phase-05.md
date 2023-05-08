@@ -1,76 +1,69 @@
-# Phase 5: Testing multiple classes
+# Bonus Phase 5: Testing the `myMap` Function
 
-For this next phase, you will be utilizing Chai to test a `Triangle` class, as
-well as the `Scalene` and `Isosceles` classes, which inherit from the
-`Triangle` class.
+Next, let's write a spec for `myMap`. In the __problems__ directory, locate the
+file named __my-map.js__ and in the __test__ folder, a corresponding
+__my-map-spec.js__ file. This version of `myMap(array, callback)` will intake an
+array and a callback, and then return a new array where the callback has been
+called upon each element in the original array. The `myMap` should not mutate
+the original argument array.
 
-These classes can be used to build instances of _potential_ triangles of different types. Each class includes methods that check the properties of the instance to validate whether it is a valid instance of that class.
+You'll be using `chai` and `chai-spies` for this series of tests.
 
-In the __problems__ directory, locate the file named __triangle.js__, and in the
-__test__ folder, a corresponding __triangle-spec.js__ file. Work one spec at a
-time through the list below using Red, Green, Refactor as you go, and don't
-forget to use [Mocha Hooks][mocha-hooks] to make your specs super DRY!
+Here is a quick example of how `myMap` should work:
 
-## `Triangle` Class
+```js
+const arr = [1, 2, 3];
+const callback = (el) => el * 2;
 
-Write specs for each of the described `Triangle` class methods below. Then write
-the code needed to pass those specs.
+console.log(myMap(arr, callback)); // prints [2,4,6]
+console.log(arr); // prints [1,2,3]
+```
 
-- `constructor` - will intake the lengths of 3 sides `side1`, `side2`, and
-  `side3` and set them as properties on the instance. Make sure you test that
-  these properties exist on an instance, as well as ensuring they are set
-  properly.
-- `getPerimeter()` instance method - will return the perimeter of the `Triangle`
-  instance, by summing the three sides.
-- `hasValidSideLengths()` instance method - returns `true` if it is a valid
-  triangle, and `false` if it is invalid. In a valid triangle, the sum of any
-  two sides must be greater than the remaining side.
-- `validate()` instance method - adds an `isValid` property to the triangle
-  instance, with a value of `true` if it is a valid triangle and `false` if the
-  side lengths are invalid.
-- `getValidTriangles()` static method - takes in an arbitrary number of triangle
-  instances, and returns all of the instances that are valid triangles.
+Start off by writing your tests. You want to ensure that your `myMap` works like
+the built-in `Array.map` method. Once you've written the test, write the code
+that will pass the test, then refactor.
 
+Now let's thoroughly test the `myMap` function. However, before you do that
+you'll want to make sure that any specs you write after this first spec will be
+working with a fresh array to ensure each unit test is done in _isolation_. The
+DRYest way to do this is by setting up a Mocha hook! Use the `beforeEach` Mocha
+hook to reassign a new instance of an `Array` each time a spec is run.
 
-## `Scalene` Class
+Now that our hook is in place, write three tests:
 
-A Scalene triangle is a triangle with three sides of unequal lengths.
+1. Ensure that `myMap` does not mutate the passed-in array argument
+2. Ensure that `myMap` does not call the built-in `Array.map`
+3. Ensure that the passed-in callback is invoked once for each element in the
+   passed-in array argument.
 
-Write specs for each of the described `Scalene` class methods below. Then
-write the code needed to pass those specs.
+**Write the first of these specs now before moving on below.**
 
-- The `Scalene` class should inherit from the `Triangle` class. Each instance of `Scalene` should be initialized with 3 side lengths, as well as an `isValidTriangle` property, with a value derived from the `Triangle` class `hasValidSideLengths` method.
-- `isScalene()` instance method - returns `true` if it is a valid
-  scalene triangle, and `false` if it is invalid. In a valid scalene triangle, all sides must be different lengths.
--  `validate()` instance method - adds an `isValidScalene` property to the
-  scalene triangle instance, with a value of `true` if it is a valid scalene
-  triangle and `false` if the side lengths are invalid for a scalene
-  triangle.
-    - Write tests to make sure that this method overrides the method in the `Triangle` class with the same name.
+For the described specs for 2-3 in the above list, you will be required to use
+`chai-spies` which is a plug-in module for the `chai` module and is used for
+tracking when a function has been called or not.
 
+Connect the `chai-spies` plug-in to be used in the `chai` assertion module at
+the top of the file with the following lines:
 
-## `Isosceles` Class
+```js
+const spies = require("chai-spies");
+chai.use(spies);
+```
 
-An Isosceles triangle has to sides of equal lengths.
+Use the `chai.spy.on` function for spec 2 to inspect whether or not the built-in
+`Array.map` has been called on the array. Take a look at the
+[Chai Spies][chai-spies] documentation to see how to use it.
 
-The `Isosceles` class should have similar methods to the `Scalene` class. The
-only difference is that the methods should check the side lengths and validate
-whether they meet the definition of an Isosceles Triangle.
+> Hint: In order to use `chai.spy.on` you'll want to think carefully about
+> **what object** you are spying on the methods for.
 
-Write specs for each of the methods. Then write the code needed to pass those
-specs.
+You can spy on a plain function using `chai.spy` instead of using `chai.spy.on`
+to spy on a method of an object. Use the `chai.spy` function for spec 3 to
+create a callback function that you can track if it has been called by your
+`myMap` function. Take a look at the [Chai Spies][chai-spies] documentation to
+see how to use it.
 
-## BONUS: `Right` and `Equilateral` Class
+Once you've finished the above specs and written the code to pass them make sure
+you refactor your code before moving on!
 
-If your have extra time, write specs for defining a `Right` triangle class as well as an `Equilateral` triangle class.
-- What properties need to be defined in the constructor?
-- What opportunities are there for using inheritance?
-- How might you you validate these two triangle types?
-
-After writing the specs, go ahead and write the code needed to pass those specs.
-
-Once you've finished and you've refactored all your code feel free to run
-`mocha` and look at all those passed specs! Pat yourself on the back for
-starting your journey into TDD development.
-
-[mocha-hooks]: https://mochajs.org/#hooks
+[chai-spies]: https://www.chaijs.com/plugins/chai-spies/
