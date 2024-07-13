@@ -9,5 +9,11 @@ describe("reverseString", () => {
         expect(reverseString("fun")).to.equal("nuf");
 
     });
+
+    context('when given a non-string argument', () => {
+        it('should throw a TypeError', () => {
+            expect(() => reverseString(123)).to.throw(TypeError);
+        });
+    });
 });
  
