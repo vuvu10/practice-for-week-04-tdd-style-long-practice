@@ -2,8 +2,8 @@
 
 const chai = require('chai');
 const expect = chai.expect;
-const Person = require('.../problems/person.js');
-//const { beforeEach } = require('mocha');
+const Person = require('../problems/person.js');
+
 
 describe('Person', function() {
     let person1, person2;
