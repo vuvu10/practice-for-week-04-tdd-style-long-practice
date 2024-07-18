@@ -11,20 +11,21 @@ class Triangle {
     }
 
     hasValidSideLengths() {
-        if (condition) {
-            
-        } else if (condition) {
-            
-        }
+        return (
+            this.side1 + this.side2 > this.side3 &&
+            this.side2 + this.side3 > this.side1 &&
+            this.side3 + this.side1 > this.side2
+        );
     }
 
     validate() {
-        if (condition) {
-            
-        }
+        this.isValid = this.hasValidSideLengths();
+        return this.isValid;
     }
 
     static getValidTriangles() {
-
+        return triangles.filter(Triangle => triangle.hasValidSideLengths());
     }
 }
+
+module.exports = Triangle;
