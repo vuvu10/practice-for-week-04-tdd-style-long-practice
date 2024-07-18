@@ -7,7 +7,7 @@ class Triangle {
     }
 
     getPerimeter() {
-        return 
+        return this.side1 + this.side2 + this.side3;
     }
 
     hasValidSideLengths() {
