@@ -19,7 +19,7 @@ class Person {
 
   update(obj) {
     if (typeof obj !== 'object' || obj === null) {
-      throw new TypeError('Input must be an object');
+      throw new TypeError('Argument must be an object');
     }
     if (!('name' in obj) || !('age' in obj)) {
       throw new TypeError('Object must have name and age properties');
