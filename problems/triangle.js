@@ -23,8 +23,8 @@ class Triangle {
         return this.isValid;
     }
 
-    static getValidTriangles() {
-        return triangles.filter(Triangle => triangle.hasValidSideLengths());
+    static getValidTriangles(...triangles) {
+        return triangles.filter(triangle => triangle.hasValidSideLengths());
     }
 }
 
