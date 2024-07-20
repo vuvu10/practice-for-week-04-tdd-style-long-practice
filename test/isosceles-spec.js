@@ -20,6 +20,6 @@ describe('Isosceles Class', function() {
         it('should set isValid to false for an invalid isosceles triangle', function() {
             isosceles2.validate();
             expect(isosceles2).to.have.property('isValid', false);
-        })
-    })
-})
+        });
+    });
+});
