@@ -41,7 +41,7 @@ describe('myMap', function() {
     });
 
     it('should pass the correct arguments to the callback', function() {
-        const callback = cahi.spy((el, index, array) => el * 2);
+        const callback = chai.spy((el, index, array) => el * 2);
         myMap(inputArray, callback);
         expect(callback).to.have.been.called.with(1, 0, inputArray);
         expect(callback).to.have.been.called.with(2, 1, inputArray);
