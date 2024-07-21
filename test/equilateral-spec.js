@@ -1,7 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 const Equilateral = require('../problems/equilateral');
-const { beforeEach } = require('mocha');
+
 
 
 describe('Equilateral Class', function() {
